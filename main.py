@@ -6,6 +6,7 @@ from player import Player
 from asteroid import Asteroid
 from shot import Shot
 
+
 def main():
     pygame.init()
     pygame.font.init()
@@ -20,10 +21,12 @@ def main():
     Shot.containers = (shot, updatable, drawable)
 
     Player.containers = (updatable, drawable)
-    p = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
+    p = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     Asteroid.containers = (asteroid, drawable, updatable)
-    AsteroidField.containers = (updatable)
+    AsteroidField.containers = updatable
     asf = AsteroidField()
+
+    #bgImage = pygame.image.load("background_image.jpg")
 
     while True:
         font = pygame.font.Font(None, 36)
@@ -46,7 +49,7 @@ def main():
         screen.fill("black")
         for obj in drawable:
             obj.draw(screen)
-        score_text = font.render(f'Score: {score}', True, (255, 255, 255))
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))
         screen.blit(score_text, (10, 10))
         pygame.display.flip()
         dt = b.tick(60) / 1000
